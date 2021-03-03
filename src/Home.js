@@ -53,11 +53,11 @@ export default function Home(){
     display: 'flex',
     flexDirection: 'column',
   }
-  
+
   return (
     <div className='home' style={stylesHome}>
       <TextField id="standard-name" label="Filter by first and last name" value={filterValue} onChange={handleChange}/>
-      <ListContacts data = {dataContacts} handleToggle= {handleToggle} dataToShow={dataToShow}
+      <ListContacts handleToggle= {handleToggle} dataToShow={dataToShow}
         checked={checked} filterValue={filterValue} 
       />
     </div>  

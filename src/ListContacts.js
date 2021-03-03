@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ListContacts({data, handleToggle, filterValue, checked, dataToShow}){
+export default function ListContacts({ handleToggle, filterValue, checked, dataToShow}){
   const classes = useStyles();
   const listRender = useCallback(
     ({ height, width }) => {
@@ -29,7 +29,7 @@ export default function ListContacts({data, handleToggle, filterValue, checked, 
         </ListRender>
       )
     },
-    [data, checked, filterValue],
+    [checked, filterValue, dataToShow],
   );
 
   const listItem = useCallback(
@@ -39,10 +39,10 @@ export default function ListContacts({data, handleToggle, filterValue, checked, 
         <OneContact value={value} handleToggle={handleToggle} style={style} checked={checked}/>
       );
     },
-    [data, checked, filterValue],
+    [checked, filterValue, dataToShow],
   );
 
-  if (!data.length){
+  if (!dataToShow.length){
       return 'no data'
   }  
   
