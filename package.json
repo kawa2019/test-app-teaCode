@@ -34,5 +34,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "@material-ui/core": "^5.0.0-alpha.26",
+    "react-virtualized-auto-sizer": "^1.0.4",
+    "react-window": "^1.8.6"
   }
 }
