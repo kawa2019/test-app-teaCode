@@ -20,7 +20,7 @@ export default function ListContacts({data, handleToggle, filterValue, checked, 
       return (
         <ListRender
           className="list-content"
-          itemCount={dataToShow.current.length}
+          itemCount={dataToShow.length}
           itemSize={50}
           height={height}
           width={width}
@@ -34,7 +34,7 @@ export default function ListContacts({data, handleToggle, filterValue, checked, 
 
   const listItem = useCallback(
     ({ index, style }) => {
-      const value = dataToShow.current[index]
+      const value = dataToShow[index]
       return (
         <OneContact value={value} handleToggle={handleToggle} style={style} checked={checked}/>
       );
@@ -45,10 +45,11 @@ export default function ListContacts({data, handleToggle, filterValue, checked, 
   if (!data.length){
       return 'no data'
   }  
+  
   return (
     <>
       <List className={classes.root}>
-        <AutoSizer style={{ height: '85 vh' }} >
+        <AutoSizer style={{ height: '85vh' }} >
           {listRender}
         </AutoSizer>
       </List>   

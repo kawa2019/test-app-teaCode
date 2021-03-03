@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import ListContacts from './ListContacts'
 import TextField from '@material-ui/core/TextField';
 
@@ -6,7 +6,7 @@ export default function Home(){
   const [dataContacts, setDataContacts] = useState([]);
   const [checked, setChecked] = useState([0]);
   const [filterValue, setFilterValue] = useState('')
-  const dataToShow = useRef(dataContacts)  
+  const [dataToShow, setDataToShow] = useState(dataContacts)  
   useEffect(()=>{
     const fetchData = async () => {
       try {
@@ -17,7 +17,8 @@ export default function Home(){
           const textB = b.last_name.toUpperCase();
           return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
-        setDataContacts(data)
+        setDataContacts(data);
+        setDataToShow(data);
       } catch (err) {
         alert(err)
        }
@@ -25,10 +26,6 @@ export default function Home(){
     fetchData()
   },[])
  
-  useEffect(()=>{
-    dataToShow.current = dataContacts
-  }, [dataContacts])
-
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -48,7 +45,7 @@ export default function Home(){
 
   const filterListFn = (value)=>{
     const filterData = dataContacts.filter(el=> el.first_name.toUpperCase().indexOf(value)>-1 || el.last_name.toUpperCase().indexOf(value)>-1)
-    dataToShow.current = filterData
+    setDataToShow(filterData)
   }
   const stylesHome = {
     width: '360px',
@@ -56,7 +53,7 @@ export default function Home(){
     display: 'flex',
     flexDirection: 'column',
   }
-
+  
   return (
     <div className='home' style={stylesHome}>
       <TextField id="standard-name" label="Filter by first and last name" value={filterValue} onChange={handleChange}/>
