@@ -28,6 +28,7 @@ const Home: FC = () => {
     (value: number) => {
       const newChecked = getCheckedContacts(value, checkedContacts);
       setCheckedContacts(newChecked);
+      console.log('ids of checked contacts', newChecked);
     },
     [checkedContacts],
   );
